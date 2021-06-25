@@ -1,9 +1,13 @@
 import React from 'react'
 import PlantsContainer from '../container/plantsContainer'
+import PlantInput from './plantInput'
 
 const PlantsIndex = () => {
     return (
-        <PlantsContainer /> 
+        <div>
+            <PlantsContainer /> 
+            <PlantInput />
+        </div>
         
     )
 }
