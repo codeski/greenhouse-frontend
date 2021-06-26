@@ -2,21 +2,21 @@ import React from 'react'
 import { Card, Button } from "react-bootstrap"
 
 const Plant = (props) => {
+    console.log(props)
     return (
-        <div>
+        <div key={props.id}>
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={props.plant.image} />
                 <Card.Body>
                     <Card.Title>{props.plant.nickname}</Card.Title>
                     <Card.Text>
-                        <h6>{props.plant.species}</h6>
+                        {props.plant.species}
                         {props.plant.description}
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button onClick={props.handleClick} variant="primary">Go somewhere</Button>
                 </Card.Body>
             </Card>
         </div>
-        
     )
 }
 
