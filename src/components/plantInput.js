@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button } from "react-bootstrap"
+import { connect } from 'react-redux'
+import { addPlant } from '../actions/plantActions'
 
 class PlantInput extends Component {
     state = {
@@ -22,6 +24,20 @@ class PlantInput extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+
+        this.props.addPlant(this.state)
+
+        this.setState({
+                nickname: '',
+                species: '',
+                water_days: '',
+                last_watered: '',
+                // light_requirements: '',
+                description: '',
+                location: '',
+                water_amount: '',
+                image: ''
+        })
     }
     
     
@@ -79,4 +95,4 @@ class PlantInput extends Component {
 }
 
 
-export default PlantInput
+export default connect(null, {addPlant})(PlantInput)

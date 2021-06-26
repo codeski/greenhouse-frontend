@@ -11,20 +11,36 @@ import {
   Route,
   Link
 } from "react-router-dom"
+import { connect } from 'react-redux'
+import { fetchPlants } from './actions/plantActions'
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-      <div>
+
+
+class App extends React.Component {
+  
+  componentDidMount(){
+    this.props.fetchPlants()
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Router>
         <Navigation />
-        <Route exact path="/" component={About} />
-        <Route exact path="/plants" component={PlantsIndex} />
-        <Route exact path="/water" component={Water} />
+        <Switch>
+          <Route exact path="/" component={About} />
+          <Route exact path="/plants" component={PlantsIndex} />
+          <Route exact path="/water" component={Water} />
+        </Switch>
+        </Router>
       </div>
-      </Router>
-    </div>
-  );
+    )
+  } 
+
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  fetchPlants: () => dispatch(fetchPlants())
+})
+
+export default connect(null, mapDispatchToProps)(App);

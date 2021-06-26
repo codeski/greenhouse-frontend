@@ -6,6 +6,9 @@ import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+
 import thunk from 'redux-thunk'
 import plantsReducer from './reducers/plantsReducer.js'
 import { combineReducers } from 'redux'
@@ -13,7 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 const rootReducer = combineReducers({ plants: plantsReducer })
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 ReactDOM.render(
   // <React.StrictMode>
