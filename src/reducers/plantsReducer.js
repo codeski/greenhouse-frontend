@@ -4,7 +4,7 @@ export default function plantsReducer(state = [], action) {
             // console.log(action.payload)
             return action.payload
         case 'ADD_PLANT':
-
+            console.log(action.payload)
             return action.payload
         default: 
             return state

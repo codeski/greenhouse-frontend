@@ -10,7 +10,7 @@ const Plant = (props) => {
                 <Card.Body>
                     <Card.Title>{props.plant.nickname}</Card.Title>
                     <Card.Text>
-                        {props.plant.species}
+                        {props.plant.species}<br/>
                         {props.plant.description}
                     </Card.Text>
                     <Button onClick={props.handleClick} variant="primary">Go somewhere</Button>

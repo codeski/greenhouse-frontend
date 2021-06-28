@@ -12,3 +12,19 @@ export function fetchPlants(){
     }
 }
 
+export function fetchPlant(plant) {
+    let configObj = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(plant)
+    }
+    return (dispatch) => {
+        fetch(URL, configObj)
+        .then(resp => resp.json())
+        .then(plant => dispatch(addPlant(plant)))
+    }
+}
+
