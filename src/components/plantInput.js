@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button } from "react-bootstrap"
 import { connect } from 'react-redux'
-import { addPlant } from '../actions/plantActions'
+import { fetchPlant } from '../actions/plantActions'
 
 class PlantInput extends Component {
     state = {
@@ -25,7 +25,7 @@ class PlantInput extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        this.props.addPlant(this.state)
+        this.props.fetchPlant(this.state)
 
         this.setState({
                 nickname: '',
@@ -83,7 +83,7 @@ class PlantInput extends Component {
                     </Form.Group> */}
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control onChange={this.handleChange} name="description" as="textarea" rows={3} value={this.state.location} />
+                        <Form.Control onChange={this.handleChange} name="description" as="textarea" rows={3} value={this.state.description} />
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit
@@ -95,4 +95,4 @@ class PlantInput extends Component {
 }
 
 
-export default connect(null, {addPlant})(PlantInput)
+export default connect(null, {fetchPlant})(PlantInput)

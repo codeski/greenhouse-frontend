@@ -1,28 +1,21 @@
 import React from 'react'
 import PlantsContainer from '../container/plantsContainer'
 import PlantInput from './plantInput'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
 
 
-class PlantsIndex extends React.Component {
+const PlantsIndex = () => {
     
-    render(){
         return (
             <div>
-                <PlantsContainer plants={this.props.plants}/> 
+                <PlantsContainer /> 
                 <PlantInput />
             </div>
         )
-    }
 }
 
-const mapStateToProps = (state) => {
-    return ({
-        plants: state.plants
-    })
-}
 
-export default connect(mapStateToProps)(PlantsIndex)
+export default PlantsIndex
 
 
