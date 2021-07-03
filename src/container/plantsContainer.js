@@ -28,9 +28,10 @@ class PlantsContainer extends Component {
     }
 
     handleClick = (id) => {
-        console.log('clicked')
+        // console.log('clicked')
         this.props.fetchDelete(id)
     }
+
 
     renderPlants = () => {
         // console.log(this.props.plants)

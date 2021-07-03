@@ -83,7 +83,7 @@ class PlantInput extends Component {
                     </Form.Group> */}
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control onChange={this.handleChange} name="description" as="textarea" rows={3} value={this.state.description} />
+                        <Form.Control onChange={this.handleChange} name="description" as="textarea" rows={3} value={this.state.description} placeholder="...or special instructions"/>
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit

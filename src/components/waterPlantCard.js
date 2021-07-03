@@ -9,7 +9,7 @@ class WaterPlantCard extends React.Component {
 
     state = {
         timer: 'loading',
-        days: 0,
+        days: 'loading',
         needsWatered: ''
     }
 
@@ -44,13 +44,7 @@ class WaterPlantCard extends React.Component {
     }
 
     componentDidMount(){
-
-        this.interval = setInterval(() => {
-            // console.log("starting timer")  
-            this.makeTimer()
-        }, 1000)
-           
- 
+        this.interval = setInterval(this.makeTimer, 1000)
     }
         
     componentWillUnmount(){
@@ -89,6 +83,7 @@ class WaterPlantCard extends React.Component {
             return this.state.days + " days from now"
         }
     }
+
 
     render() {
         return (
