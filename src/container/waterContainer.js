@@ -2,24 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import WaterPlantCard from '../components/waterPlantCard'
 import { Row } from "react-bootstrap"
-import { fetchWatered } from '../actions/plantActions'
 
 
 class WaterContainer extends Component {
     
-    renderWaterCards = () => {
-        return this.props.plants.map(plant => <WaterPlantCard key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>) 
-    }
-
-    handleClick = (id) => {
-        this.props.fetchWatered(id)
+    renderPlantWaterCards = () => {
+        return this.props.plants.map(plant => <WaterPlantCard key={plant.id} id={plant.id} plant={plant}/>) 
     }
     
     render() {
         return (
             <div>
                 <Row xs={1} md={3} className="g-4">
-                    {this.renderWaterCards()}
+                    {this.renderPlantWaterCards()}
                 </Row>
             </div>
         )
@@ -33,4 +28,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {fetchWatered})(WaterContainer)
+export default connect(mapStateToProps)(WaterContainer)

@@ -48,7 +48,7 @@ export function fetchDelete(id) {
     }
 }
 
-export function fetchWatered(id) {
+export function fetchWaterUpdate(id) {
     console.log(id)
     let configObj = {
         method: 'PUT',

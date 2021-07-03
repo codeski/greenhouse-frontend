@@ -7,8 +7,8 @@ import {fetchDelete} from '../actions/plantActions'
 class PlantsContainer extends Component {
 
     state = {
-        searchTerm: '', 
-        search: ''
+        searchTerm: ''
+        // search: ''
     }
 
     handleSearchChange = (e) => {
@@ -17,10 +17,12 @@ class PlantsContainer extends Component {
         })
     }
 
-    search = (e) => {
+    clearSearch = (e) => {
             // this.props.plants.filter(plant => plant.nickname.includes(e.target.value) === this.state.searchTerm)
             this.setState({
-                search: e.target.value
+                
+                    searchTerm: '', 
+                    search: ''
             })
 
     }
@@ -37,9 +39,10 @@ class PlantsContainer extends Component {
 
     searchOrRender = () => {
         if (this.state.searchTerm !== '') {
-            const filtered = this.props.plants.filter(plant => plant.nickname.includes(this.state.searchTerm))
-
+            const filtered = this.props.plants.filter(plant => plant.nickname.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+            if (filtered.length > 0) {
             return filtered.map(plant => <Plant key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>)
+            } else { return <p>"No Results"</p>}
         } else {
             return this.renderPlants()
         }
@@ -52,12 +55,11 @@ class PlantsContainer extends Component {
                 <h1>Plants Index</h1>
                 <Form inline>
                     <FormControl onChange={this.handleSearchChange} type="text" placeholder="Search" className="mr-sm-2" value={this.state.searchTerm}/>
-                    <Button onClick={this.search} variant="outline-success">Search</Button>
+                    <Button onClick={this.clearSearch} variant="outline-success">Clear Search</Button>
                 </Form>
 
                 <Row xs={1} md={3} className="g-4">
                     {this.searchOrRender()}
-                {/* {this.renderPlants()} */}
                 </Row>
             </div>
         )
