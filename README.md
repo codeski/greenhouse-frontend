@@ -1,6 +1,8 @@
 # GreenHouse 
 An application to remind you to water your plants
 
+video tutorial - https://www.youtube.com/watch?v=JWjmDtFHcqg
+
 ## To get your GreenHouse Backend API Running
 
 ```
