@@ -14,9 +14,9 @@ class WaterPlantCard extends React.Component {
     }
 
     addDays = (date, days) => {
-        let result = new Date(date)
-        result.setDate(result.getDate() + days)
-        return result.toDateString()
+        let nextWater = new Date(date)
+        nextWater.setDate(nextWater.getDate() + days)
+        return nextWater.toDateString()
     }
 
     displayDate = (date) => {
@@ -44,7 +44,8 @@ class WaterPlantCard extends React.Component {
     }
 
     componentDidMount(){
-        this.interval = setInterval(this.makeTimer, 1000)
+        this.makeTimer()
+        this.interval = setInterval(this.makeTimer, 1000 * 60 * 60)
     }
         
     componentWillUnmount(){
@@ -70,6 +71,7 @@ class WaterPlantCard extends React.Component {
             timer: 'loading',
             days: 'loading'
         })
+        this.makeTimer()
     }
 
     displayNextWaterCoutdownDisplay = () => {

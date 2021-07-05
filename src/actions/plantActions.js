@@ -49,7 +49,6 @@ export function fetchDelete(id) {
 }
 
 export function fetchWaterUpdate(id) {
-    console.log(id)
     let configObj = {
         method: 'PUT',
         headers: {
@@ -64,4 +63,3 @@ export function fetchWaterUpdate(id) {
         .then(plant => dispatch(waterPlant(plant)))
     }
 }
-

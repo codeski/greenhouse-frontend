@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Form, FormControl, Button, Row } from "react-bootstrap"
 import { connect } from 'react-redux'
-import Plant from '../components/plant'
+import Plant from '../components/plantCard'
 import {fetchDelete} from '../actions/plantActions'
 
 class PlantsContainer extends Component {

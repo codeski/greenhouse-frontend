@@ -7,7 +7,6 @@ export default class Water extends Component {
             <div>
                 <h1>Water Schedule</h1>
                 <WaterContainer /> 
-
             </div>
         )
     }

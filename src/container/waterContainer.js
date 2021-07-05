@@ -13,16 +13,14 @@ class WaterContainer extends Component {
     }
 
     renderPlantWaterCards = () => {
-        // return this.props.plants.map(plant => <WaterPlantCard key={plant.id} id={plant.id} plant={plant}/>) 
-        let sorted = this.props.plants.sort((plantA, plantB) => {
-            // function(plantA, plantB){
-            //     console.log(plantA, plantB)
-                // let aPlantLastWatered = new Date(plantA.last_watered)
+
+        let originalOrder = this.props.plants
+
+        let sorted = [...originalOrder].sort((plantA, plantB) => {
                 let newDate1 = (this.addDays(plantA.last_watered, plantA.water_days))
                 let newDate2 = (this.addDays(plantB.last_watered, plantB.water_days))
                 // debugger
-                return new Date(newDate1) - new Date(newDate2)
-                
+                return new Date(newDate1) - new Date(newDate2)   
             })
         
         return sorted.map(plant => <WaterPlantCard key={plant.id} id={plant.id} plant={plant}/>)
