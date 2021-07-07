@@ -102,13 +102,13 @@ class WaterPlantCard extends React.Component {
                     <Card.Body>
                         <Card.Title>{this.props.plant.nickname}</Card.Title>
                         <Card.Text>
-                            Water amount: {this.props.plant.water_amount}<br/>
-                            Location: {this.props.plant.location}<br/>
+                        <b>Water amount:</b> {this.props.plant.water_amount}<br/>
+                        <b>Location:</b> {this.props.plant.location}<br/>
     
-                            water every: {this.props.plant.water_days} days<br/>
-                            Last Watered: {this.displayDate(this.props.plant.last_watered)}<br/>
-                            Needs Watered: {this.addDays(this.props.plant.last_watered, this.props.plant.water_days)}<br/>
-                            Water: {this.displayNextWaterCoutdownDisplay()}
+                        <b>Water every:</b> {this.props.plant.water_days} days<br/>
+                        <b>Last watered:</b> {this.displayDate(this.props.plant.last_watered)}<br/>
+                        <b>Needs watered:</b> {this.addDays(this.props.plant.last_watered, this.props.plant.water_days)}<br/>
+                        <b>Water:</b> {this.displayNextWaterCoutdownDisplay()}
                             
                         </Card.Text>
                         <Button onClick={() => this.handleClick(this.props.plant.id)} variant="primary">Water Plant</Button>

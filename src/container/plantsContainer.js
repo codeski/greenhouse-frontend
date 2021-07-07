@@ -53,9 +53,9 @@ class PlantsContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Plants Index</h1>
+                <h1>All My Plants</h1>
                 <Form inline>
-                    <FormControl onChange={this.handleSearchChange} type="text" placeholder="Search" className="mr-sm-2" value={this.state.searchTerm}/>
+                    <FormControl onChange={this.handleSearchChange} type="text" placeholder="Search by Nickname" className="mr-sm-2" value={this.state.searchTerm}/>
                     <Button onClick={this.clearSearch} variant="outline-success">Clear Search</Button>
                 </Form>
 
