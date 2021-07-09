@@ -1,5 +1,5 @@
 # GreenHouse 
-An application to remind you to water your plants
+"GreenHouse" is a sigle page application written using React/Redux library framework frontend and a Rails API backend server. It's an application to remind you when to water your plants.
 
 video tutorial - https://www.youtube.com/watch?v=JWjmDtFHcqg
 
@@ -19,6 +19,9 @@ cd greenhouse-frontend
 npm i
 npm start
 ```
+
+## Link to License
+[MIT](https://choosealicense.com/licenses/mit/)
 
 # Getting Started with Create React App 
 
