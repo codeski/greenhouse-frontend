@@ -8,16 +8,11 @@ import { fetchWaterUpdate } from '../actions/plantActions'
 class WaterPlantCard extends React.Component {
 
     state = {
-        timer: 'loading',
+        // timer: 'loading',
         days: 'loading',
-        needsWatered: ''
+        // needsWatered: ''
     }
 
-    addDays = (date, days) => {
-        let nextWater = new Date(date)
-        nextWater.setDate(nextWater.getDate() + days)
-        return nextWater.toDateString()
-    }
 
     displayDate = (date) => {
         let display = new Date(date)
@@ -25,7 +20,7 @@ class WaterPlantCard extends React.Component {
     }
 
     makeTimer = () => {
-        let needsWatered = this.addDays(this.props.plant.last_watered, this.props.plant.water_days)
+        let needsWatered = this.props.addDays(this.props.plant.last_watered, this.props.plant.water_days)
         let difference = (new Date(needsWatered).getTime()) - (new Date().getTime())
         
         let seconds = Math.floor(difference / 1000);
@@ -36,16 +31,25 @@ class WaterPlantCard extends React.Component {
         hours %= 24;
         minutes %= 60;
         seconds %= 60;
-
+        // debugger
         this.setState({
-            timer: days + " days",
+            // timer: days + " days",
             days: days
         })
+        // debugger
+        // (days) => this.renderCardColor(days)
     }
 
     componentDidMount(){
         this.makeTimer()
-        this.interval = setInterval(this.makeTimer, 1000)
+        this.displayNextWaterCoutdownDisplay()
+        // this.interval = setInterval(this.makeTimer, 1000)
+    }
+
+    componentDidUpdate(props){
+        this.makeTimer
+        this.displayNextWaterCoutdownDisplay()
+        // this.renderCardColor
     }
         
     componentWillUnmount(){
@@ -67,11 +71,8 @@ class WaterPlantCard extends React.Component {
 
     handleClick = (id) => {
         this.props.fetchWaterUpdate(id)
-        
-        this.setState({
-            timer: 'loading',
-            days: 'loading'
-        }, this.makeTimer)
+        this.makeTimer()  // days: days
+        this.displayNextWaterCoutdownDisplay()
     }
 
     displayNextWaterCoutdownDisplay = () => {
@@ -107,7 +108,7 @@ class WaterPlantCard extends React.Component {
     
                         <b>Water every:</b> {this.props.plant.water_days} days<br/>
                         <b>Last watered:</b> {this.displayDate(this.props.plant.last_watered)}<br/>
-                        <b>Needs watered:</b> {this.addDays(this.props.plant.last_watered, this.props.plant.water_days)}<br/>
+                        <b>Needs watered:</b> {this.props.addDays(this.props.plant.last_watered, this.props.plant.water_days)}<br/>
                         <b>Water:</b> {this.displayNextWaterCoutdownDisplay()}
                             
                         </Card.Text>

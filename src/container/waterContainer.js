@@ -23,7 +23,7 @@ class WaterContainer extends Component {
                 return new Date(newDate1) - new Date(newDate2)   
             })
         
-        return sorted.map(plant => <WaterPlantCard key={plant.id} id={plant.id} plant={plant}/>)
+        return sorted.map(plant => <WaterPlantCard addDays={this.addDays} lastWatered={plant.lastWatered} key={plant.id} id={plant.id} plant={plant}/>)
     }
     
     render() {
