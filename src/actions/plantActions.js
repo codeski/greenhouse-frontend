@@ -57,8 +57,8 @@ export function fetchWaterUpdate(id) {
         }
     }
 
-    return (dispatch) => {
-        fetch(URL + id, configObj)
+    return async (dispatch) => {
+        await fetch(URL + id, configObj)
         .then(resp => resp.json())
         .then(plant => dispatch(waterPlant(plant)))
     }

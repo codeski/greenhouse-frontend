@@ -9,7 +9,6 @@ const About = () => {
             <Title />
             <Description />
             <Image src="https://cdn.shopify.com/s/files/1/1267/8737/products/2_Palram_Greenhouses_Balance_8x20_Grey_1920.jpg?v=1605832310" fluid />
- 
         </div>
     )
 }

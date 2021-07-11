@@ -8,9 +8,7 @@ import { fetchWaterUpdate } from '../actions/plantActions'
 class WaterPlantCard extends React.Component {
 
     state = {
-        // timer: 'loading',
-        days: 'loading',
-        // needsWatered: ''
+        days: 'loading'
     }
 
 
@@ -20,36 +18,26 @@ class WaterPlantCard extends React.Component {
     }
 
     makeTimer = () => {
-        let needsWatered = this.props.addDays(this.props.plant.last_watered, this.props.plant.water_days)
-        let difference = (new Date(needsWatered).getTime()) - (new Date().getTime())
+        let needsWateredDate = this.props.addDays(this.props.plant.last_watered, this.props.plant.water_days)
+        let difference = (new Date(needsWateredDate).getTime()) - (new Date().getTime())
         
         let seconds = Math.floor(difference / 1000);
         let minutes = Math.floor(seconds / 60);
         let hours = Math.floor(minutes / 60);
         let days = Math.floor(hours / 24);
 
-        hours %= 24;
-        minutes %= 60;
-        seconds %= 60;
-        // debugger
+        // hours %= 24;
+        // minutes %= 60;
+        // seconds %= 60;
+
         this.setState({
-            // timer: days + " days",
             days: days
         })
-        // debugger
-        // (days) => this.renderCardColor(days)
     }
 
     componentDidMount(){
         this.makeTimer()
-        this.displayNextWaterCoutdownDisplay()
-        // this.interval = setInterval(this.makeTimer, 1000)
-    }
-
-    componentDidUpdate(props){
-        this.makeTimer
-        this.displayNextWaterCoutdownDisplay()
-        // this.renderCardColor
+        this.interval = setInterval(this.makeTimer, 1000 * 60 * 60)
     }
         
     componentWillUnmount(){
@@ -57,7 +45,6 @@ class WaterPlantCard extends React.Component {
     }
 
     renderCardColor = (days) => {
-        // console.log(days)
         if (days === 'undefined'){
             return 'success'
         } else if (days > 0) {
@@ -69,21 +56,20 @@ class WaterPlantCard extends React.Component {
         }
     }
 
-    handleClick = (id) => {
-        this.props.fetchWaterUpdate(id)
-        this.makeTimer()  // days: days
-        this.displayNextWaterCoutdownDisplay()
+    handleClick = async (id) => {
+        await this.props.fetchWaterUpdate(id)
+        this.makeTimer()
     }
 
-    displayNextWaterCoutdownDisplay = () => {
-        if (this.state.days === 0){
+    displayNextWaterCoutdownDisplay = (days) => {
+        if (days === 0){
             return "Tomorrow"
-        } else if (this.state.days === -1) {
+        } else if (days === -1) {
             return "Today"
-        } else if (this.state.days < -1){
-            return this.state.days + " days ago"
+        } else if (days < -1){
+            return days + " days ago"
         } else {
-            return this.state.days + 1 + " days from now"
+            return days + 1 + " days from now"
         }
     }
 
@@ -95,7 +81,6 @@ class WaterPlantCard extends React.Component {
                 <Card
                     bg={this.renderCardColor(this.state.days)}
                     key={this.props.plant.id}
-                    // text={this.renderCardColor(this.state.days).toLowerCase() === 'light' ? 'dark' : 'white'} 
                     style={{ width: '18rem' }}
                     className="mb-2"
                     >
@@ -109,7 +94,7 @@ class WaterPlantCard extends React.Component {
                         <b>Water every:</b> {this.props.plant.water_days} days<br/>
                         <b>Last watered:</b> {this.displayDate(this.props.plant.last_watered)}<br/>
                         <b>Needs watered:</b> {this.props.addDays(this.props.plant.last_watered, this.props.plant.water_days)}<br/>
-                        <b>Water:</b> {this.displayNextWaterCoutdownDisplay()}
+                        <b>Water:</b> {this.displayNextWaterCoutdownDisplay(this.state.days)}
                             
                         </Card.Text>
                         <Button onClick={() => this.handleClick(this.props.plant.id)} variant="primary">Water Plant</Button>
