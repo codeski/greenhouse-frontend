@@ -8,7 +8,6 @@ class PlantsContainer extends Component {
 
     state = {
         searchTerm: ''
-        // search: ''
     }
 
     handleSearchChange = (e) => {
@@ -18,23 +17,18 @@ class PlantsContainer extends Component {
     }
 
     clearSearch = (e) => {
-            // this.props.plants.filter(plant => plant.nickname.includes(e.target.value) === this.state.searchTerm)
             this.setState({
-                
                     searchTerm: '', 
-                    search: ''
             })
 
     }
 
     handleClick = (id) => {
-        // console.log('clicked')
         this.props.fetchDelete(id)
     }
 
 
     renderPlants = () => {
-        // console.log(this.props.plants)
         return this.props.plants.map(plant => <Plant key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>)
     }
 
