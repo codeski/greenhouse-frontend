@@ -2,13 +2,16 @@ import React from 'react'
 import Title from './title'
 import Description from './description'
 import Image from 'react-bootstrap/Image'
+import plantImage from '../assets/plantImage.jpg'
+// import { Jumbotron }  from './Jumbotron'
 
 const About = () => {
     return (
         <div className="home">
+            {/* <Jumbotron /> */}
             <Title />
             <Description />
-            <Image src="https://cdn.shopify.com/s/files/1/1267/8737/products/2_Palram_Greenhouses_Balance_8x20_Grey_1920.jpg?v=1605832310" fluid />
+            <Image src={plantImage} fluid />
         </div>
     )
 }

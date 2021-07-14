@@ -48,15 +48,16 @@ class PlantsContainer extends Component {
         return (
             <div>
                 <h1>All My Plants</h1>
+                    
                 <Form inline>
                     <FormControl onChange={this.handleSearchChange} type="text" placeholder="Search by Nickname" className="mr-sm-2" value={this.state.searchTerm}/>
                     <Button onClick={this.clearSearch} variant="outline-success">Clear Search</Button>
                 </Form>
-                    
+
                 <Row xs={1} md={3} className="g-4">
                     {this.searchOrRender()}
                 </Row>
-                   
+                  
             </div>
         )
     }
