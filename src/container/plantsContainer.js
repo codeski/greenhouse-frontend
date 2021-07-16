@@ -7,7 +7,8 @@ import {fetchDelete} from '../actions/plantActions'
 class PlantsContainer extends Component {
 
     state = {
-        searchTerm: ''
+        searchTerm: '',
+        clicked: false
     }
 
     handleSearchChange = (e) => {
@@ -17,9 +18,10 @@ class PlantsContainer extends Component {
     }
 
     clearSearch = (e) => {
-            this.setState({
-                    searchTerm: '', 
-            })
+            this.setState(prevState => ({
+                ...prevState,
+                searchTerm: '', 
+            }))
 
     }
 
@@ -32,15 +34,67 @@ class PlantsContainer extends Component {
         return this.props.plants.map(plant => <Plant key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>)
     }
 
+    // searchOrRender = () => {
+    //     if (this.state.searchTerm !== '') {
+    //         const filtered = this.props.plants.filter(plant => plant.nickname.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+    //         if (filtered.length > 0) {
+    //         return filtered.map(plant => <Plant key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>)
+    //         } else { return <p>"No Results"</p>}
+    //     } else if (this.state.clicked){
+    //         return this.sortAlphabeticalName()
+    //     }else {
+    //         return this.renderPlants()
+    //     }
+    // }
+
     searchOrRender = () => {
-        if (this.state.searchTerm !== '') {
-            const filtered = this.props.plants.filter(plant => plant.nickname.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+        let origionalOrder = this.props.plants
+        let alphabetical = this.sortAlphabeticalName() 
+
+        if (this.state.clicked && this.state.searchTerm !== '') {
+            const alphafiltered = alphabetical.filter(plant => plant.nickname.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+            if (alphafiltered.length > 0) {
+                return alphafiltered.map(plant => <Plant key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>)
+            } else { 
+                return <p>"No Results"</p>
+            }
+        } else if (this.state.clicked) {
+            return alphabetical.map(plant => <Plant key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>)
+        } else if (this.state.searchTerm !== '') {
+            let filtered = origionalOrder.filter(plant => plant.nickname.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
             if (filtered.length > 0) {
             return filtered.map(plant => <Plant key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>)
             } else { return <p>"No Results"</p>}
-        } else {
+        } else if (this.state.clicked){
+            return this.sortAlphabeticalName()
+        }else {
             return this.renderPlants()
         }
+    }
+
+    handleAlphabeticalSort = () => {
+        this.setState(prevState => ({...prevState, clicked: !prevState.clicked}))
+    }
+
+    sortAlphabeticalName = () => {
+
+        let originalOrder = this.props.plants
+
+        let sorted = [...originalOrder].sort((a, b) => {
+            let plantA = a.nickname.toLowerCase()
+            let plantB = b.nickname.toLowerCase()
+            if (plantA < plantB) {
+                return -1
+            } else if (plantA > plantB) {
+                return 1
+            } else
+                // names must be equal
+                return 0
+            }
+        )
+        
+        return sorted
+        // .map(plant => <Plant key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>)
     }
     
     
@@ -52,12 +106,12 @@ class PlantsContainer extends Component {
                 <Form inline>
                     <FormControl onChange={this.handleSearchChange} type="text" placeholder="Search by Nickname" className="mr-sm-2" value={this.state.searchTerm}/>
                     <Button onClick={this.clearSearch} variant="outline-success">Clear Search</Button>
+                    <Button onClick={this.handleAlphabeticalSort} variant="outline-success">{this.state.clicked ? "Undo Alphabetical" : "Order Alphabetically"}</Button>
                 </Form>
 
                 <Row xs={1} md={3} className="g-4">
                     {this.searchOrRender()}
-                </Row>
-                  
+                </Row>            
             </div>
         )
     }
