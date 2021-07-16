@@ -17,8 +17,6 @@ const Styles = styled.div`
     }
 `
 
-
-
 const Navigation = () => {
     return (
         <Styles>

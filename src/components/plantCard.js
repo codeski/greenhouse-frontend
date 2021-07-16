@@ -2,7 +2,6 @@ import React from 'react'
 import { Card, Button } from "react-bootstrap"
 
 const Plant = (props) => {
-    // console.log(props)
     return (
         <div key={props.id}>
             <Card style={{ width: '18rem' }}>

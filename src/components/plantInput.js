@@ -40,7 +40,6 @@ class PlantInput extends Component {
         })
     }
     
-    
     render() {
         return (
             <div>
@@ -70,7 +69,6 @@ class PlantInput extends Component {
                         <Form.Label>Location</Form.Label>
                         <Form.Control onChange={this.handleChange} type="text" name="location" placeholder="example: living room" value={this.state.location}/>
                     </Form.Group>
-
                     {/* <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Light Requirments</Form.Label>
                         <Form.Control onChange={this.handleChange} name="light_requirements" as="select" placeholder="select" value={this.state.light_requirements}>
@@ -93,6 +91,5 @@ class PlantInput extends Component {
         )
     }
 }
-
 
 export default connect(null, {fetchPlant})(PlantInput)

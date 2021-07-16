@@ -22,30 +22,15 @@ class PlantsContainer extends Component {
                 ...prevState,
                 searchTerm: '', 
             }))
-
     }
 
     handleClick = (id) => {
         this.props.fetchDelete(id)
     }
 
-
     renderPlants = () => {
         return this.props.plants.map(plant => <Plant key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>)
     }
-
-    // searchOrRender = () => {
-    //     if (this.state.searchTerm !== '') {
-    //         const filtered = this.props.plants.filter(plant => plant.nickname.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
-    //         if (filtered.length > 0) {
-    //         return filtered.map(plant => <Plant key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>)
-    //         } else { return <p>"No Results"</p>}
-    //     } else if (this.state.clicked){
-    //         return this.sortAlphabeticalName()
-    //     }else {
-    //         return this.renderPlants()
-    //     }
-    // }
 
     searchOrRender = () => {
         let origionalOrder = this.props.plants
@@ -77,7 +62,6 @@ class PlantsContainer extends Component {
     }
 
     sortAlphabeticalName = () => {
-
         let originalOrder = this.props.plants
 
         let sorted = [...originalOrder].sort((a, b) => {
@@ -88,13 +72,11 @@ class PlantsContainer extends Component {
             } else if (plantA > plantB) {
                 return 1
             } else
-                // names must be equal
                 return 0
             }
         )
         
         return sorted
-        // .map(plant => <Plant key={plant.id} id={plant.id} handleClick={this.handleClick} plant={plant}/>)
     }
     
     

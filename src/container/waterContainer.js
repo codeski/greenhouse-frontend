@@ -17,11 +17,11 @@ class WaterContainer extends Component {
         let originalOrder = this.props.plants
 
         let sorted = [...originalOrder].sort((plantA, plantB) => {
-                let newDateWateredDate = (this.addDays(plantA.last_watered, plantA.water_days))
-                let newNextWaterDate = (this.addDays(plantB.last_watered, plantB.water_days))
-                
-                return new Date(newDateWateredDate) - new Date(newNextWaterDate)   
-            })
+            let newDateWateredDate = (this.addDays(plantA.last_watered, plantA.water_days))
+            let newNextWaterDate = (this.addDays(plantB.last_watered, plantB.water_days))
+            
+            return new Date(newDateWateredDate) - new Date(newNextWaterDate)   
+        })
         
         return sorted.map(plant => <WaterPlantCard addDays={this.addDays} lastWatered={plant.lastWatered} key={plant.id} id={plant.id} plant={plant}/>)
     }
@@ -42,6 +42,5 @@ const mapStateToProps = (state) => {
         plants: state.plants
     })
 }
-
 
 export default connect(mapStateToProps)(WaterContainer)

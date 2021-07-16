@@ -17,7 +17,6 @@ const Styles = styled.div`
         text-shadow: 2px 2px 8px #111;
     }
 
-    
     // .overlay {
     //     background-color: #000
     //     opacity: 0.6;
@@ -28,8 +27,6 @@ const Styles = styled.div`
     //     left: 0;;
     // }
 `
-
-// z-index: -2;
 
 export const Jumbotron = () => {
     return (

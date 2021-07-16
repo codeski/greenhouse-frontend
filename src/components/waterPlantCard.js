@@ -11,7 +11,6 @@ class WaterPlantCard extends React.Component {
         days: 'loading'
     }
 
-
     displayDate = (date) => {
         let display = new Date(date)
         return display.toDateString()
@@ -21,14 +20,14 @@ class WaterPlantCard extends React.Component {
         let needsWateredDate = this.props.addDays(this.props.plant.last_watered, this.props.plant.water_days)
         let difference = (new Date(needsWateredDate).getTime()) - (new Date().getTime())
         
-        let seconds = Math.floor(difference / 1000);
-        let minutes = Math.floor(seconds / 60);
-        let hours = Math.floor(minutes / 60);
-        let days = Math.floor(hours / 24);
+        let seconds = Math.floor(difference / 1000)
+        let minutes = Math.floor(seconds / 60)
+        let hours = Math.floor(minutes / 60)
+        let days = Math.floor(hours / 24)
 
-        // hours %= 24;
-        // minutes %= 60;
-        // seconds %= 60;
+        // hours %= 24
+        // minutes %= 60
+        // seconds %= 60
 
         this.setState({
             days: days
@@ -73,7 +72,6 @@ class WaterPlantCard extends React.Component {
         }
     }
 
-
     render() {
         return (
             <div key={this.props.plant.id}>
@@ -106,7 +104,6 @@ class WaterPlantCard extends React.Component {
 
 
 }
-
 
 export default connect(null, { fetchWaterUpdate })(WaterPlantCard)
 
