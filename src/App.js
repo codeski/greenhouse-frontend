@@ -1,5 +1,4 @@
 import React from 'react'
-// import logo from './logo.svg';
 import Navigation from './components/navigation'
 import About from './components/about'
 import PlantsIndex from './components/plantsIndex'
@@ -14,8 +13,6 @@ import {
 import { connect } from 'react-redux'
 import { fetchPlants } from './actions/plantActions'
 import { Layout } from './components/layout'
-
-
 
 
 class App extends React.Component {
