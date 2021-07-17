@@ -1,62 +1,72 @@
 import React, { useEffect, useState } from "react"
+//import the hooks
 
 const HooksTimer = () => {
-
 // 1. Constructor
     const [timer, setTimer] = useState(0)
+    // timer is local state variable
+    // setTimer() is the function we use to setState of timer esentially 
+    // useState() is our inital state, can be a reference to a function
 
-// 2. componentDidMount, componentWillUnmount
     useEffect(() => {
-        console.log('componentDidMount', timer)
-        setTimer(timer + 1)
-        // const increment = setTimeout(setTheTimer, 5000)
-        return () => {
-            console.log('componentWillUnmount', timer)
-            // clearTimeout(increment) 
+// 3. componentDidMount() - Yes, it's numbered correctly and needs to be in this order
+// remember what happens when you return something in a function? It stops reading the rest of the code
+        console.log('componentDidMount', timer) // timer will be 0
+        increment() // see the DOM start at 1 // render happens twice before you see it
+        const tickTock = setInterval(increment, 1000) // runs function increment every second
+// Last. componentWillUnmount()
+        return () => { 
+            console.log('componentWillUnmount')
+            clearInterval(tickTock) // runs once during the unmounting
         }
-        // componentWillUnmount
-        // happen every rerender if no second argument
-    }, [timer]) //componentDidUpdate
-    // if no array will run everytime state updates
+    }, []) //4. componentDidUpdate
+    // if no second arguent / no array, useEffect will run everytime state updates
     // if empty array [] useEffect will only run once during mounting and unmounting
-    // if anything is in the array then will run the useEffect every time that state updates
+    // put the state if you'd like to trigger useEffect when a specific state updates, exaple [timer](this will make our code go crazy)
 
-    
-    // 3. ran inside of useEffect 
-    // const setTheTimer = () => {
-    //     setTimer(timer + 1)
-    //     console.log('increment', timer + 1)
-    // }
+// 4. ran inside of useEffect 
+        const increment = () => {
+            setTimer(t => t + 1) // this does not depend on 'timer'
+        }
 
-    //since timer is updated it triggers another Timeout renders in one second
-
-    // if empty array useEffect will only run once
-    // otherwise include the state where you would like to run useEffect again
-    console.log('render', timer)
+// 2, 5, & every second. Render
     return (
-        <p>{timer}</p>
+        <div>
+            <p>{timer}{console.log('render')}</p>
+        </div>
     )
 }
 
 export default HooksTimer
 
-// function LifecycleDemo() {
-//     // It takes a function
-//     useEffect(() => {
-//       // This gets called after every render, by default
-//       // (the first one, and every one after that)
-//       console.log('render!');
-  
-//       // If you want to implement componentWillUnmount,
-//       // return a function from here, and React will call
-//       // it prior to unmounting.
-//       return () => console.log('unmounting...');
-//     }, [ // dependencies to watch = leave blank to run once or you will get a stack overflow  
-//     ]);
-  
-//     return "I'm a lifecycle demo";
-// }
-  
+// const HooksTimer = () => {
+
+//         const [timer, setTimer] = useState(5)
+
+//         useEffect(() => {
+//             console.log('componentDidMount', timer)
+//             increment()
+//             const tickTock = setInterval(increment, 1000) 
+
+//             return () => { 
+//                 console.log('componentWillUnmount')
+//                 clearInterval(tickTock)
+//             }
+//         }, [])
+
+//             const increment = () => {
+//                 setTimer(t => t + 1)
+//             }
+
+//         return (
+//             <div>
+//                 <p>{timer}{console.log('render')}</p>
+//             </div>
+//         )
+//     }
+    
+// export default HooksTimer
+
 
 // class Timer extends React.Component {
 
@@ -84,3 +94,13 @@ export default HooksTimer
 // }
  
 // export default Timer
+
+    // useEffect(() => {
+    //     console.log('componentDidMount', timer)
+    //     setTimer(timer + 1)
+    //     // const increment = setTimeout(setTheTimer, 5000)
+    //     return () => {
+    //         console.log('componentWillUnmount')
+            // clearTimeout(increment) 
+    //     }
+    // }, [timer]) 
