@@ -6,12 +6,10 @@ import plantImage from '../assets/plantImage.jpg'
 // import HooksTimer from './hooksTimer'
 // import Counter from './hooksTimer'
 // import Timer from './timer'
-// import { Jumbotron }  from './Jumbotron'
 
 const About = () => {
     return (
         <div className="home">
-            {/* <Jumbotron /> */}
             {/* <Timer /> */}
             {/* <Counter /> */}
             {/* <HooksTimer /> */}

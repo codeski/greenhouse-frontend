@@ -20,7 +20,7 @@ class PlantsContainer extends Component {
     clearSearch = (e) => {
             this.setState(prevState => ({
                 ...prevState,
-                searchTerm: '', 
+                searchTerm: '' 
             }))
     }
 
